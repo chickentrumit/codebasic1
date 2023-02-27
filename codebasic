@@ -1,0 +1,106 @@
+//BAI1
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#define p printf // xuat
+#define s scanf //nhap
+void nhapdongvacot(int &n,int &m){
+	do{
+			p("nhap so n dong va so m cot:");
+			s("%d%d",&n,&m);
+			if(!((n>=1&&n<=100)&&(m>=1&&m<=100))) p("nhap sai!!!,vui long nhap lai!!!!!!!!\n");
+	}while(!((n>=1&&n<=100)&&(m>=1&&m<=100)));
+}
+void phatsinh(int a[][100],int n,int m){
+		for(int i=0;i<n;++i){
+		for(int j=0;j<m;++j){
+			a[i][j]=rand()%51;
+		}
+	}
+}
+void xuat(int a[][100],int n,int m){
+	for(int i=0;i<n;++i){
+		for(int j=0;j<m;++j){
+			p("%d\t",a[i][j]);
+		}
+	}
+}
+int main(){
+	srand((int)time(0));
+	int n,m;
+	nhapdongvacot(n,m);
+	int a[n][100];
+	phatsinh(a,n,m);
+	xuat(a,n,m);
+}
+
+//BAI2
+#include<stdio.h>
+#define p printf // xuat
+#define s scanf //nhap
+int checksnt(int n){
+	if(n<2) return 0;
+	for(int i=2;i*i<=n;++i){
+		if(!(n%i)) return 0;
+	}
+	return 1;
+}
+void nhapdongvacot(int &n,int &m){
+	do{
+			p("nhap so n dong va so m cot:");
+			s("%d%d",&n,&m);
+			if(!((n>=1&&n<=100)&&(m>=1&&m<=100))) p("nhap sai!!!,vui long nhap lai!!!!!!!!\n");
+	}while(!((n>=1&&n<=100)&&(m>=1&&m<=100)));
+}
+void nhap(int a[][100],int n,int m){
+	for(int i=0;i<n;++i){
+		for(int j=0;j<m;++j){
+			p("a[%d][%d]:",i,j);
+			s("%d",&a[i][j]);
+		}
+	}
+}
+void xuatsochan(int a[][100],int n,int m){
+	p("so chan va vi tri cua so chan la\n");
+	for(int i=0;i<n;++i){
+		for(int j=0;j<m;++j){
+			if(!(a[i][j]&1)){
+				p("a[%d][%d]:%d\t",i,j,a[i][j]);
+			}
+		}
+		p("\n");
+	}
+}
+void xuatsnt(int a[][100],int n,int m){
+	p("xuat so nguyen to và vi tri so nguyen to la\n");
+	for(int i=0;i<n;++i){
+		for(int j=0;j<m;++j){
+			if(checksnt(a[i][j])){
+				p("a[%d][%d]:%d\t",i,j,a[i][j]);
+			}
+		}
+		p("\n");
+	}
+}
+void timvitrix(int a[][100],int n,int m,int x){
+	p("xuat so nguyen to và vi tri so nguyen to la\n");
+	for(int i=0;i<n;++i){
+		for(int j=0;j<m;++j){
+			if(a[i][j]==x){
+				p("a[%d][%d]:%d\t",i,j,a[i][j]);
+			}
+		}
+		p("\n");
+	}
+}
+main(){
+	int n,m,x;
+	nhapdongvacot(n,m);
+	int a[n][100];
+	nhap(a,n,m);
+	xuatsochan(a,n,m);
+	xuatsnt(a,n,m);
+	printf("nhap x:");
+	s("%d",&x);
+	timvitrix(a,n,m,x);
+}
